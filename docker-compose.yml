@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  db:
+    restart: always
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+
+  web:
+    build: ./django/
+    restart: always
+    command: ["./docker-entrypoint.sh"]
+    volumes:
+      - ./django:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
