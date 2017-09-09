@@ -1,4 +1,15 @@
+# System
 .DS_Store
 .vscode
+.cache
 
+# Python
+migrations
 __pycache__
+venv
+env
+*.pyc
+
+# Node
+node_modules
+npm-debug.log

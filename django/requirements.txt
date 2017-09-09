@@ -1,2 +1,4 @@
  Django>=1.11,<1.12
  psycopg2>=2.7,<2.8
+ gunicorn>=19.7,<19.8
+ djangorestframework>=3.6,<3.7
