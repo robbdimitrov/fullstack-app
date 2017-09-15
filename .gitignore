@@ -4,11 +4,16 @@
 .cache
 
 # Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.log
+*.pot
 migrations
-__pycache__
+local_settings.py
 venv
 env
-*.pyc
 
 # Node
 node_modules
