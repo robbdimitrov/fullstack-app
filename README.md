@@ -14,7 +14,7 @@ cd project-name && rm -rf .git
 ### Generate angular project
 
 ```
-
+docker-compose run --no-deps --rm client ng new <angular-app-name> --directory .
 ```
 
 ### Generate django project
