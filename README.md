@@ -27,7 +27,7 @@ If you are running Docker on Linux, the files django-admin created are owned by 
 This happens because the container runs as the root user. Change the ownership of the new files.
 
 ```
-sudo chown -R $USER:$USER ./angular
+sudo chown -R $USER:$USER ./django
 ```
 
 Generate django app
