@@ -6,7 +6,7 @@ Clone the repo to directory of choice
 
 ```
 git clone git@github.com:robbdimitrov/fullstack-app.git <project-name>
-cd project-name && rm -rf .git
+cd <project-name> && rm -rf .git
 ```
 
 ## Generate projects
@@ -14,26 +14,26 @@ cd project-name && rm -rf .git
 ### Generate angular project
 
 ```
-docker-compose run --no-deps --rm client ng new <angular-app-name> --directory .
+script/generate angular <app-name>
 ```
 
 ### Generate django project
 
 ```
-docker-compose run --no-deps --rm web django-admin.py startproject <project-server-name> .
+script/generate django <django-project-name>
 ```
 
 If you are running Docker on Linux, the files django-admin created are owned by root. 
 This happens because the container runs as the root user. Change the ownership of the new files.
 
 ```
-sudo chown -R $USER:$USER .
+sudo chown -R $USER:$USER ./angular
 ```
 
 Generate django app
 
 ```
-docker-compose run --no-deps --rm web python manage.py startapp <app-name>
+script/generate djangoapp <django-app-name>
 ```
 
 ### Database configuration
@@ -52,16 +52,41 @@ DATABASES = {
 }
 ```
 
+## Build
+
+Build Angular for development or production
+
+```
+# these are for development
+script/build angular
+script/build angular --dev
+
+# this is for production
+script/build angular --prod
+```
+
 ## Deployment
 
 Build images
 
 ```
-docker-compose build
+make build
 ```
 
 Run containers
 
 ```
-docker-compose up
+make run
+```
+
+Stop containers
+
+```
+make stop
+```
+
+Clean images and containers
+
+```
+make clean
 ```

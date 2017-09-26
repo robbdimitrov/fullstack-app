@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# build
+
+build_angular() {
+  if [ "$(docker ps -q -f name=fullstackapp_client_1)" ]; then
+    docker exec fullstackapp_client_1 ng build $1
+  else
+    echo "Running container and building. This may take a while.."
+    docker-compose run --no-deps --rm client ng build $1
+  fi
+}
+
+help() {
+  echo ""
+  echo "Use this shell script to build projects."
+  echo ""
+  echo "Usage:"
+  echo "$0 angular                              Build Angular"
+  echo ""
+}
+
+case "$1" in
+  angular)
+    build_angular $2
+    ;;
+  *)
+    help
+esac

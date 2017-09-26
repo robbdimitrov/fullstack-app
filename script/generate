@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# generate
+
+angular_app() {
+    docker-compose run --no-deps --rm client ng new $1 --directory .
+}
+
+django_project() {
+    docker-compose run --no-deps --rm web django-admin.py startproject $1 .
+}
+
+django_app() {
+    docker-compose run --no-deps --rm web python manage.py startapp $1
+}
+
+help() {
+  echo ""
+  echo "Use this shell script to create a django project, django app or an angular app."
+  echo ""
+  echo "Usage:"
+  echo "$0 angular <app-name>                   Generate Angular app"
+  echo "$0 django <django-project-name>         Generate Django project"
+  echo "$0 djangoapp <django-app-name>          Generate Django app"
+  echo ""
+}
+
+if [[ "$#" -ne 2 ]]; then
+ help
+ exit 1
+fi
+
+case "$1" in
+  angular)
+    angular_app $2
+    ;;
+  django)
+    django_project $2
+    ;;
+  djangoapp)
+    django_app $2
+    ;;
+  *)
+    help
+esac
